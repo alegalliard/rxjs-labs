@@ -13,7 +13,7 @@ Objetivos:
 4. deve esperar o usuário digitar pelo menos 2 digitos - OK (ver filter)
 5. deve esperar o usuário parar de digitar por pelo menos meio segundo - OK (ver debounceTime) 
 6. deve tentar fazer a requisição pelo menos 5 vezes antes de dar erro - OK (ver retry)
-7. deve exibir uma mensagem de 'carregando...' toda vez q começar uma nova busca
+7. deve exibir uma mensagem de 'carregando...' toda vez q começar uma nova busca  - OK (ver startWith no pipe da conexão)
 8. um resultado de uma busca antiga nunca deve sobrepor uma nova
 
 Definições
@@ -48,7 +48,8 @@ export class SearchComponent {
     mergeMap(url => this.http.get(url) 
         .pipe(
           retry(5),
-          map(results => results['results'])
+          map(results => results['results']),
+          startWith({message: 'Carregando...'})
         )),
     startWith({message: 'Não foi possível carregar a lista'})
   );

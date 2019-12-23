@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">Star Wars Typeahead Search</mat-toolbar>
 <mat-form-field class="full-width">
-  <input matInput type="text" [formControl]="myInput">
+  <input matInput type="text" [formControl]="starWarsInput">
 </mat-form-field>
 <div *ngIf="results$ | async as results">
   <mat-card *ngIf="results.message || !results.length; else listData">

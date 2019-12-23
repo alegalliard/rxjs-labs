@@ -48,11 +48,15 @@ import {MatTreeModule} from '@angular/material/tree';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
+import { CounterComponent } from './counter/counter.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
+    CounterComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { startWith, map, mergeMap } from 'rxjs/operators';
+import { startWith, map, mergeMap, filter } from 'rxjs/operators';
 
 // URL: `https://swapi.co/api/people/?search=${v}`
 
@@ -24,11 +24,14 @@ Objetivos:
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
+  //map: aplica uma dada função para cada valo emitido pelo Observable de origem e emite o valor como um Observable
+  //mergeMap: projeta cada valor de origem num Observable e é mergeado como Observable final
+  //filter: filtra itens emitidos pelo Observable de origem emitindo somente aqueles q satisfazem a regra
   starWarsInput = new FormControl;
   results$ = this.starWarsInput.valueChanges.pipe(
-    // tap(),
-    map(val => `https://swapi.co/api/people/?search=${val}`), //aplica uma dada função para cada valo emitido pelo Observable de origem e emite o valor como um Observable
-    mergeMap(url => this.http.get(url) //projeta cada valor de origem num Observable e é mergeado como Observable final
+    filter(val => val.length > 2),
+    map(val => `https://swapi.co/api/people/?search=${val}`), 
+    mergeMap(url => this.http.get(url) 
         .pipe(
           map(results => results['results'])
         )),

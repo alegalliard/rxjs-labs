@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, startWith } from 'rxjs/operators';
 
 // URL: `https://swapi.co/api/people/?search=${v}`
 
 /*
 Objetivos:
 1. não mutar nenhum dado ou criar outras variáveis
-2. exiba uma mensagem inicial para o usuário começar a busca
+2. exiba uma mensagem inicial para o usuário começar a busca - OK
 3. deve exibir o resultado de uma nova busca a cada novo valor escrito
 4. deve esperar o usuário digitar pelo menos 2 digitos
 5. deve esperar o usuário parar de digitar por pelo menos meio segundo
@@ -26,7 +26,8 @@ Objetivos:
 export class SearchComponent /*implements OnInit*/ {
   starWarsInput = new FormControl;
   results$ = this.starWarsInput.valueChanges.pipe(
-    tap()
+    tap(),
+    startWith({message: 'Não foi possível carregar a lista'})
   );
 
   constructor(

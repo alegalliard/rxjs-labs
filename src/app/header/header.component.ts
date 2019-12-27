@@ -16,4 +16,11 @@ export class HeaderComponent implements OnInit {
   sidenavStatus() {
     this.toggleSidenav.emit(!this.opened)
   }
+
+  switchIcons() {
+    if(this.opened){
+      return 'menu_open';
+    }
+    return 'menu';
+  }
 }

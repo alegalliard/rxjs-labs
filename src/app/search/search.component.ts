@@ -50,9 +50,9 @@ export class SearchComponent {
         .pipe(
           retry(5),
           map(results => results['results']),
-          startWith({message: 'Carregando...'})
+          startWith({message: 'Loading...'})
         )),
-    startWith({message: 'Digite um nume para iniciar'}),
+    startWith({message: 'Type a character name to begin'}),
     tap(console.log)
   );
 

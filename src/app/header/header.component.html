@@ -1,8 +1,4 @@
 <mat-toolbar color="primary">
-    <button mat-flat-button (click)="sidenavStatus()" color="primary">
-        <mat-icon aria-hidden="false" aria-label="Menu">
-            {{switchIcons()}}
-        </mat-icon>
-    </button> 
+    <app-menu-button (click)="sidenavStatus()" [opened]="opened"></app-menu-button>
     Star Wars Typeahead Search 
 </mat-toolbar>

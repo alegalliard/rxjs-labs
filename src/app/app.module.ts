@@ -52,6 +52,7 @@ import { SearchComponent } from './search/search.component';
 import { CounterComponent } from './counter/counter.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
+import { MenuButtonComponent } from './header/menu-button/menu-button.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { HeaderComponent } from './header/header.component';
     SearchComponent,
     CounterComponent,
     SidenavComponent,
-    HeaderComponent
+    HeaderComponent,
+    MenuButtonComponent
   ],
   imports: [
     BrowserModule,

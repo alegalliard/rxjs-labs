@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rxjs';
+  opened: boolean = false;
+
+  toggleSidenav($event) {
+    this.opened = $event;
+  }
 }

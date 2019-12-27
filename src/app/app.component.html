@@ -1,9 +1,11 @@
-<mat-sidenav-container>
-
-  <app-sidenav></app-sidenav>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" >
+    Sidenav content
+  </mat-sidenav>
   
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-
+      <app-header [opened]="opened" (toggleSidenav)="toggleSidenav($event)"></app-header>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
 </mat-sidenav-container>
+  

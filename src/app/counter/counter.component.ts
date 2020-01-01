@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { mapTo, tap } from 'rxjs/operators';
+import { mapTo, tap, map, scan } from 'rxjs/operators';
+import { strictEqual } from 'assert';
 
 /*
 Objetivos:
@@ -41,6 +42,17 @@ export class CounterComponent {
 
   state$: Observable<AppState> = this.actions$.pipe(
     tap(a => console.log(Action[a])),
-    mapTo({...this.initialState}),
+    scan((state, action) => {
+      switch(action) {
+        case (Action.Add):
+          return { count: state.count +1 }
+        case (Action.Subtract):
+          return { count: state.count -1 }
+        case (Action.Reset):
+          return { count: 0 }
+        default: return state;
+      }
+      
+    }, {...this.initialState}),
   );
 }

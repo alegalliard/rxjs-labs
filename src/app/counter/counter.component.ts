@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { mapTo, tap, map, scan } from 'rxjs/operators';
-import { strictEqual } from 'assert';
+import { BehaviorSubject, Observable, interval, EMPTY, merge } from 'rxjs';
+import { mapTo, tap, map, scan, filter, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 /*
 Objetivos:
@@ -40,19 +39,28 @@ export class CounterComponent {
   actionType = Action;
   actions$ = new BehaviorSubject(Action.Reset);
 
-  state$: Observable<AppState> = this.actions$.pipe(
-    tap(a => console.log(Action[a])),
+  timerEffect$ = this.actions$.pipe(
+    filter(a => a === Action.Start || a === Action.Pause),
+    distinctUntilChanged(),
+    switchMap(a => a === Action.Start ? interval(1000) : EMPTY),
+    mapTo(Action.Add),
+    tap(console.log)
+  );
+
+  state$: Observable<AppState> = merge(
+    this.actions$,
+    this.timerEffect$
+  ).pipe(
     scan((state, action) => {
-      switch(action) {
+      switch(+action) { //adiciona o + para forçar o type number (typescript)
         case (Action.Add):
-          return { count: state.count +1 }
+          return { count: state.count +1 };
         case (Action.Subtract):
-          return { count: state.count -1 }
+          return { count: state.count -1 };
         case (Action.Reset):
-          return { count: 0 }
+          return { count: 0 };
         default: return state;
       }
-      
-    }, {...this.initialState}),
+    }, {...this.initialState})
   );
 }

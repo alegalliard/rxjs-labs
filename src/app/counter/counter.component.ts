@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject, Observable, interval, EMPTY, merge } from 'rxjs';
-import { mapTo, tap, map, scan, filter, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { mapTo, tap, scan, filter, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 /*
 Objetivos:

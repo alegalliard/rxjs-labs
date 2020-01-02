@@ -17,7 +17,7 @@
   </mat-sidenav>
   
   <mat-sidenav-content>
-      <app-header [opened]="opened" (toggleSidenav)="toggleSidenav($event)"></app-header>
+      <app-header [opened]="opened" (toggleSidenav)="toggleSidenav($event)" [title]="changeTitle()"></app-header>
       
       <main class="main">
         <router-outlet></router-outlet>

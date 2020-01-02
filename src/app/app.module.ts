@@ -113,7 +113,8 @@ import { MenuButtonComponent } from './header/menu-button/menu-button.component'
     PortalModule,
     ScrollingModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

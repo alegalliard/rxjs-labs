@@ -4,9 +4,24 @@ import { SearchComponent } from './search/search.component';
 import { CounterComponent } from './counter/counter.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/star-wars-search' },
-  { path: 'star-wars-search', component: SearchComponent },
-  { path: 'counter', component: CounterComponent }
+  { path: '', pathMatch: 'full', 
+    redirectTo: '/star-wars-search',
+    data: {
+      title: 'Inicial'
+    }
+  },
+  { path: 'star-wars-search', 
+    component: SearchComponent, 
+    data: {
+      title: 'Star Wars Typeahead Search'
+    } 
+},
+  { path: 'counter', 
+    component: CounterComponent,
+    data: {
+      title: 'Counter'
+    } 
+  }
 ];
 
 @NgModule({

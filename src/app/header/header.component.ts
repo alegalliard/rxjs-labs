@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter<boolean>();
   @Input() opened: boolean;
+  @Input() title: string;
   constructor() { }
 
   ngOnInit() {

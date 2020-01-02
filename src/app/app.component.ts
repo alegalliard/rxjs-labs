@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, RoutesRecognized} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,22 @@ export class AppComponent {
   title = 'rxjs';
   opened: boolean = false;
 
+  public constructor(
+    private activatedRoute: Router
+    ) {}
+
   toggleSidenav($event) {
     this.opened = $event;
+  }
+
+  changeTitle() {
+    this.activatedRoute.events.subscribe(event => {
+      if(event instanceof RoutesRecognized) {
+        let route = event.state.root.firstChild;
+        this.title = `RxJS - ${route.data.title}`;
+      }
+    })
+    
+    return this.title;
   }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
 import { CounterComponent } from './counter/counter.component';
+import { ComplexCounterComponent } from './complex-counter/complex-counter.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', 
@@ -20,6 +21,12 @@ const routes: Routes = [
     component: CounterComponent,
     data: {
       title: 'Counter'
+    } 
+  },
+  { path: 'complex-counter', 
+    component: ComplexCounterComponent,
+    data: {
+      title: 'Complex Counter'
     } 
   }
 ];

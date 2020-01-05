@@ -1,0 +1,31 @@
+<div *ngIf="count.state$ | async as state">
+    <h2>Count: {{state.count}}</h2>
+    <label>
+    Count Diff
+    <input type="number"
+        [value]="state.countDiff"
+        (change)="count.dispatch(actionType.UpdateCountDiff, $event.target.value)"
+        (keyup)="count.dispatch(actionType.UpdateCountDiff, $event.target.value)">
+    </label><br>
+    <label>
+    Count Speed
+    <input type="number"
+        [value]="state.countSpeed"
+        (change)="count.dispatch(actionType.UpdateCountSpeed, $event.target.value)"
+        (keyup)="count.dispatch(actionType.UpdateCountSpeed, $event.target.value)">
+    </label><br>
+    <label>
+    Set Count
+    <input type="number"
+        value="10"
+        (change)="count.dispatch(actionType.UpdateCount, $event.target.value)"
+        (keyup)="count.dispatch(actionType.UpdateCount, $event.target.value)">
+    </label>
+</div>
+
+<button (click)="count.dispatch(actionType.Add)">add</button>
+<button (click)="count.dispatch(actionType.Subtract)">sub</button>
+<button (click)="count.dispatch(actionType.Reset)">reset</button>
+<button (click)="count.dispatch(actionType.CountUp)">start up</button>
+<button (click)="count.dispatch(actionType.CountDown)">start down</button>
+<button (click)="count.dispatch(actionType.Pause)">pause</button>

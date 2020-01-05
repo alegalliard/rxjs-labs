@@ -46,6 +46,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 
+
+//components
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
@@ -54,6 +56,10 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuButtonComponent } from './header/menu-button/menu-button.component';
 
+//services
+import { ComplexCounterService } from './services/complex-counter.service';
+import { ComplexCounterComponent } from './complex-counter/complex-counter.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +67,8 @@ import { MenuButtonComponent } from './header/menu-button/menu-button.component'
     CounterComponent,
     SidenavComponent,
     HeaderComponent,
-    MenuButtonComponent
+    MenuButtonComponent,
+    ComplexCounterComponent
   ],
   imports: [
     BrowserModule,
@@ -114,6 +121,7 @@ import { MenuButtonComponent } from './header/menu-button/menu-button.component'
     ScrollingModule
   ],
   providers: [
+    ComplexCounterService
   ],
   bootstrap: [AppComponent]
 })

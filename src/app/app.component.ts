@@ -22,7 +22,7 @@ export class AppComponent {
     this.activatedRoute.events.subscribe(event => {
       if(event instanceof RoutesRecognized) {
         let route = event.state.root.firstChild;
-        this.title = `RxJS - ${route.data.title}`;
+        this.title = `${route.data.title}`;
       }
     })
     

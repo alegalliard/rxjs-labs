@@ -1,7 +1,15 @@
-<mat-sidenav #sidenav mode="side" [(opened)]="opened">
+
+    <mat-toolbar>
+        <span>RxJS + Material</span>
+    </mat-toolbar>
+    
     <mat-list>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
+        <mat-list-item>
+            <a routerLink="/star-wars-search">Star Wars Search</a>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <a routerLink="/counter">Counter</a>
+        </mat-list-item>
+        <mat-divider></mat-divider>
     </mat-list>
-</mat-sidenav>

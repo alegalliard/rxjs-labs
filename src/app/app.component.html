@@ -1,27 +1,14 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-      <mat-toolbar>
-          <span>RxJS + Material</span>
-      </mat-toolbar>
-
-      <mat-list>
-          <mat-list-item>
-              <a routerLink="/star-wars-search">Star Wars Search</a>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>
-              <a routerLink="/counter">Counter</a>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-      </mat-list>
-  </mat-sidenav>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+        <app-sidenav></app-sidenav>
+    </mat-sidenav>
   
-  <mat-sidenav-content>
-      <app-header [opened]="opened" (toggleSidenav)="toggleSidenav($event)" [title]="changeTitle()"></app-header>
-      
-      <main class="main">
-        <router-outlet></router-outlet>
-      </main>
+    <mat-sidenav-content>
+        <app-header [opened]="opened" (toggleSidenav)="toggleSidenav($event)" [title]="changeTitle()"></app-header>
+        
+        <main class="main">
+            <router-outlet></router-outlet>
+        </main>
 
     </mat-sidenav-content>
 </mat-sidenav-container>

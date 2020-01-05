@@ -10,7 +10,7 @@ Objetivos:
 4. deve ser possível iniciar o contador subtraindo números ao clicar no start down
 */
 
-export enum CountActionType {
+export enum ComplexCounterActionType {
   CountUp,
   CountDown,
   UpdateCount,
@@ -22,16 +22,16 @@ export enum CountActionType {
   Subtract,
 }
 
-export interface CountState {
+export interface ComplexCounterState {
   count: number,
 }
 
-export interface CountAction {
-  actionType: CountActionType,
+export interface ComplexCounterAction {
+  actionType: ComplexCounterActionType,
   payload?: any,
 }
 
-const initialState: CountState = {
+const initialState: ComplexCounterState = {
   count: 0,
 };
 
@@ -40,42 +40,42 @@ const initialState: CountState = {
 })
 export class ComplexCounterService {
 
-  private actions$ = new BehaviorSubject<CountAction>({
-    actionType: CountActionType.Reset
+  private actions$ = new BehaviorSubject<ComplexCounterAction>({
+    actionType: ComplexCounterActionType.Reset
   });
 
   timerCount$ = this.actions$.pipe(
     filter(({actionType}) =>
-      actionType === CountActionType.CountUp ||
-      actionType === CountActionType.Pause),
+      actionType === ComplexCounterActionType.CountUp ||
+      actionType === ComplexCounterActionType.Pause),
     distinctUntilKeyChanged('actionType'),
     switchMap(({actionType}) =>
-      actionType === CountActionType.CountUp ? interval(1000) : NEVER),
-    mapTo(this.buildAction(CountActionType.Add)),
+      actionType === ComplexCounterActionType.CountUp ? interval(1000) : NEVER),
+    mapTo(this.buildAction(ComplexCounterActionType.Add)),
   )
 
-  state$: Observable<CountState> = merge(
+  state$: Observable<ComplexCounterState> = merge(
     this.actions$,
     this.timerCount$,
   ).pipe(
-    scan((state: CountState, { actionType, payload }: CountAction) => {
+    scan((state: ComplexCounterState, { actionType, payload }: ComplexCounterAction) => {
       switch (actionType) {
-        case CountActionType.Add:
+        case ComplexCounterActionType.Add:
           return { ...state, count: state.count + 1 };
-        case CountActionType.Subtract:
+        case ComplexCounterActionType.Subtract:
           return { ...state, count: state.count - 1 };
-        case CountActionType.Reset:
+        case ComplexCounterActionType.Reset:
           return { ...initialState };
       }
       return state;
     }, { ...initialState }),
   );
 
-  dispatch(actionType: CountActionType, payload?: any) {
+  dispatch(actionType: ComplexCounterActionType, payload?: any) {
     this.actions$.next(this.buildAction(actionType, payload));
   }
 
-  private buildAction(actionType: CountActionType, payload?: any): CountAction {
+  private buildAction(actionType: ComplexCounterActionType, payload?: any): ComplexCounterAction {
     return {
       actionType,
       payload,
